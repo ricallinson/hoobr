@@ -22,11 +22,12 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
-    Set webroot and approot (this seems a bit sketchy).
+    Set modroot, webroot, approot & datroot (these seem a bit sketchy).
 */
 
+$req->cfg("modroot", dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]));
 $req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
-$req->cfg("approot", $pathlib->join(__DIR__, "..", "..", "..", ".."));
+$req->cfg("approot", $pathlib->join($req->cfg("modroot"), "..", ".."));
 $req->cfg("datroot", $pathlib->join($req->cfg("approot"), "data"));
 
 /*

@@ -2,7 +2,7 @@
 //@route GET /
 $startMicroTime = microtime(true);
 
-require("../../node_modules/php-require/index.php");
+require(__DIR__ . "/../php-require/index.php");
 
 /*
     Require modules.
@@ -17,7 +17,7 @@ $assests = $require("hoobr-assets");
     Grab the $request, $response objects.
 */
 
-// $req = $require("php-http/request");
+$req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
@@ -45,6 +45,7 @@ $res->render($lookFeelPackage["layout"], $composite(
         "footer" => "",
         "assetsTop" => $assests["render"]("top"),
         "assetsBottom" => $assests["render"]("bottom"),
+        "webroot" => $req->cfg("webroot"),
         "start" => $startMicroTime
     )
 ));

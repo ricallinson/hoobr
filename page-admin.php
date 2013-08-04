@@ -2,7 +2,7 @@
 // @route GET|POST /admin
 $startMicroTime = microtime(true);
 
-require("../../node_modules/php-require/index.php");
+require(__DIR__ . "/../php-require/index.php");
 
 /*
     Require modules.
@@ -44,6 +44,7 @@ if ($req->cfg("loggedin") !== true) {
             "assetsTop" => $assests["render"]("top"),
             "assetsBottom" => $assests["render"]("bottom"),
             "title" => "Admin Logon",
+            "webroot" => $req->cfg("webroot"),
             "start" => $startMicroTime
         )
     ));
@@ -114,6 +115,7 @@ $res->render($lookFeelPackage["layout"], $composite(
         "footer" => "",
         "assetsTop" => $assests["render"]("top"),
         "assetsBottom" => $assests["render"]("bottom"),
+        "webroot" => $req->cfg("webroot"),
         "start" => $startMicroTime
     )
 ));
