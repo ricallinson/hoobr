@@ -24,7 +24,7 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $require($req->cfg("site-theme"));
+$lookFeelPackage = $require($req->cfg("public/site-theme"));
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
@@ -41,7 +41,7 @@ $res->render($lookFeelPackage["layout"], $composite(
             "module" => "hoobr-articles",
             "action" => "main"
         ),
-        "title" => $req->cfg("site-title"),
+        "title" => $req->cfg("public/site-title"),
         "footer" => "",
         "assetsTop" => $assests["render"]("top"),
         "assetsBottom" => $assests["render"]("bottom"),
