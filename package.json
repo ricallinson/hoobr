@@ -1,0 +1,33 @@
+{
+    "name": "hoobr",
+    "description": "Admin site.",
+    "version": "0.0.1",
+    "author": {
+        "name": "Ric Allinson",
+        "email": "npm@ricallinson.com"
+    },
+    "engines": {
+        "php": ">= 5.4.0"
+    },
+    "config": {
+        "hoobr": {
+            "version": "*",
+            "type": "layout",
+            "core": "true"
+        }
+    },
+    "dependencies" : {
+        
+    },
+    "devDependencies" : {
+        
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ricallinson/hoobr-admin.git"
+    },
+    "scripts": {
+        "test": "./test/run"
+    },
+    "license": "MIT"
+}
