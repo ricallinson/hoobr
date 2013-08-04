@@ -25,13 +25,36 @@ $res = $require("php-http/response");
     Set modroot, webroot, approot & datroot (these seem a bit sketchy).
 */
 
-$req->cfg("modroot", dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]));
-$req->cfg("webroot", $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", ".."));
-$req->cfg("approot", $pathlib->join($req->cfg("modroot"), "..", ".."));
-$req->cfg("datroot", $pathlib->join($req->cfg("approot"), "data"));
+$modroot = dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]);
+$webroot = $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", "..");
+$approot = $pathlib->join($modroot, "..", "..");
+$datroot = $pathlib->join($approot, "data");
 
 /*
-    Set the renderer to be used by default.
+    Build the default application configuration.
+*/
+
+$req->config = array(
+    "modroot" => $modroot,
+    "webroot" => $webroot,
+    "approot" => $approot,
+    "datroot" => $datroot
+);
+
+/*
+    Get overrides from the application directory.
+*/
+
+$overrides = $require($pathlib->join($approot, "config"));
+
+/*
+    Merge the application overrides into the configuration.
+*/
+
+$req->config = array_merge($req->config, $require("../config"), $overrides);
+
+/*
+    Set the default renderer to be used.
 */
 
 $res->renderer[".php.html"] = $require("php-render-php");

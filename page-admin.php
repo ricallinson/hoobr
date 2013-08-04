@@ -24,7 +24,7 @@ $res = $require("php-http/response");
     Find our look and feel.
 */
 
-$lookFeelPackage = $require("hoobr-theme-admin");
+$lookFeelPackage = $require($req->cfg("admin-site-theme"));
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
@@ -43,7 +43,7 @@ if ($req->cfg("loggedin") !== true) {
             "footer" => "",
             "assetsTop" => $assests["render"]("top"),
             "assetsBottom" => $assests["render"]("bottom"),
-            "title" => "Admin Logon",
+            "title" => $req->cfg("admin-site-title"),
             "webroot" => $req->cfg("webroot"),
             "start" => $startMicroTime
         )
@@ -111,7 +111,7 @@ $res->render($lookFeelPackage["layout"], $composite(
         "header" => $header,
         "main" => $main,
         "sidebar" => $sidebar,
-        "title" => "Hoobr Admin",
+        "title" => $req->cfg("admin-site-title"),
         "footer" => "",
         "assetsTop" => $assests["render"]("top"),
         "assetsBottom" => $assests["render"]("bottom"),
