@@ -13,6 +13,7 @@ ini_set('display_errors', 'on');
 */
 
 $pathlib = $require("php-path");
+$configReader = $require("hoobr-config-reader");
 
 /*
     Prime request/response objects.
@@ -30,6 +31,7 @@ if ($req->cfg("approot") === null) {
     $webroot = $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", "..");
     $approot = $pathlib->join(dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]), "..", "..");
     $datroot = $pathlib->join($approot, "data");
+    $cfgroot = $pathlib->join($approot, "config");
 
     /*
         Build the default application configuration.
@@ -38,21 +40,16 @@ if ($req->cfg("approot") === null) {
     $req->config = array(
         "webroot" => $webroot,
         "approot" => $approot,
-        "datroot" => $datroot
+        "datroot" => $datroot,
+        "cfgroot" => $cfgroot
     );
 }
-
-/*
-    Get overrides from the application directory.
-*/
-
-$overrides = $require($pathlib->join($req->cfg("approot"), "config"));
 
 /*
     Merge the application overrides into the configuration.
 */
 
-$req->config = array_merge($req->config, $require("../config"), $overrides);
+$req->config = array_merge($req->config, $configReader("hoobr", $req->cfg("cfgroot"))->get());
 
 /*
     If hoobr is offline then show the page and exit.
