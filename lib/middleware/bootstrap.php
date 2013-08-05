@@ -58,22 +58,22 @@ $req->config = array_merge($req->config, $require("../config"), $overrides);
     If hoobr is offline then show the page and exit.
 */
 
-if ($req->cfg("site/offline")) {
+if ($req->cfg("site/offline") && $req->param("page") !== "admin") {
     $require($req->cfg("site/offline-module"));
     exit();
 }
-
-/*
-    Set the default renderer to be used.
-*/
-
-$res->renderer[".php.html"] = $require("php-render-php");
 
 /*
     Include middleware.
 */
 
 $require("hoobr-users/lib/middleware/auth");
+
+/*
+    Set the default renderer to be used.
+*/
+
+$res->renderer[".php.html"] = $require("php-render-php");
 
 /*
     If we got to here all is good so return true.
