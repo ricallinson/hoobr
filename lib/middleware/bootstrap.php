@@ -22,24 +22,25 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
-    Set modroot, webroot, approot & datroot (these seem a bit sketchy).
+    Set webroot, approot & datroot (these seem a bit sketchy).
 */
 
-$modroot = dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]);
-$webroot = $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", "..");
-$approot = $pathlib->join($modroot, "..", "..");
-$datroot = $pathlib->join($approot, "data");
+if ($req->cfg("approot") === null) {
 
-/*
-    Build the default application configuration.
-*/
+    $webroot = $pathlib->join($pathlib->dirname($req->getServerVar("PHP_SELF")), "..", "..");
+    $approot = $pathlib->join(dirname($_SERVER["DOCUMENT_ROOT"] . $_SERVER["PHP_SELF"]), "..", "..");
+    $datroot = $pathlib->join($approot, "data");
 
-$req->config = array(
-    "modroot" => $modroot,
-    "webroot" => $webroot,
-    "approot" => $approot,
-    "datroot" => $datroot
-);
+    /*
+        Build the default application configuration.
+    */
+
+    $req->config = array(
+        "webroot" => $webroot,
+        "approot" => $approot,
+        "datroot" => $datroot
+    );
+}
 
 /*
     Get overrides from the application directory.

@@ -2,7 +2,7 @@
 //@route GET /
 $startMicroTime = microtime(true);
 
-require(__DIR__ . "/../php-require/index.php");
+if (!isset($require)) require(__DIR__ . "/../php-require/index.php");
 
 /*
     Require modules.
