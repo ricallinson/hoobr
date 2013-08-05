@@ -55,6 +55,15 @@ $overrides = $require($pathlib->join($req->cfg("approot"), "config"));
 $req->config = array_merge($req->config, $require("../config"), $overrides);
 
 /*
+    If hoobr is offline then show the page and exit.
+*/
+
+if ($req->cfg("site/offline")) {
+    $require($req->cfg("site/offline-module"));
+    exit();
+}
+
+/*
     Set the default renderer to be used.
 */
 

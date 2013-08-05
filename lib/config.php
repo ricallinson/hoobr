@@ -2,6 +2,13 @@
 $module->exports = array(
 
     /*
+        Site Settings.
+    */
+
+    "site/offline" => false,
+    "site/offline-module" => "hoobr/views/offline.html",
+
+    /*
         Public Site Configuration.
     */
 
