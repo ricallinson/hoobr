@@ -5,7 +5,7 @@ $module->exports = array(
         Site Settings.
     */
 
-    "site/offline" => true,
+    "site/offline" => false,
     "site/offline-module" => "hoobr/views/offline.html",
 
     /*
