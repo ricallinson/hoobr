@@ -46,7 +46,7 @@ if ($req->cfg("approot") === null) {
     Get overrides from the application directory.
 */
 
-$overrides = $require($pathlib->join($approot, "config"));
+$overrides = $require($pathlib->join($req->cfg("approot"), "config"));
 
 /*
     Merge the application overrides into the configuration.
