@@ -37,9 +37,16 @@ $res->render($lookFeelPackage["layout"], $composite(
             "module" => "hoobr-articles",
             "action" => "menu"
         ),
+        "splash" => array(
+            "module" => "hoobr-articles",
+            "action" => "splash",
+            "params" => array(
+                "splash-id" => "0787986e-fa45-11e2-b5a0-000000000000"
+            )
+        ),
         "main" => array(
             "module" => "hoobr-articles",
-            "action" => "main"
+            "action" => ""
         ),
         "title" => $req->cfg("public/site-title"),
         "footer" => "",
