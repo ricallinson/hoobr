@@ -39,14 +39,18 @@ $res->render($lookFeelPackage["layout"], $composite(
         ),
         "splash" => array(
             "module" => "hoobr-articles",
-            "action" => "splash",
+            "action" => "article",
             "params" => array(
-                "splash-id" => "0787986e-fa45-11e2-b5a0-000000000000"
+                "view" => "splash",
+                "article-id" => "0787986e-fa45-11e2-b5a0-000000000000"
             )
         ),
         "main" => array(
             "module" => "hoobr-articles",
-            "action" => ""
+            "action" => "",
+            "params" => array(
+                "category" => "general"
+            )
         ),
         "title" => $req->cfg("public/site-title"),
         "footer" => "",
