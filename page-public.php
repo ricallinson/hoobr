@@ -34,8 +34,8 @@ $assests["addBundle"]($lookFeelPackage["config"]);
 $res->render($lookFeelPackage["layout"], $composite(
     array(
         "header" => array(
-            "module" => "hoobr-articles",
-            "action" => "menu"
+            "module" => "",
+            "action" => ""
         ),
         "splash" => array(
             "module" => "hoobr-articles",
