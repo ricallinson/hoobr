@@ -62,8 +62,11 @@ if ($req->cfg("site/offline") && $req->param("page") !== "admin") {
 
 /*
     Include middleware.
+
+    These are modules which perform chaecks and setup the request.
 */
 
+$require("hoobr-bucket-tester/lib/middleware/bucket");
 $require("hoobr-users/lib/middleware/auth");
 
 /*
