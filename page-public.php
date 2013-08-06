@@ -47,7 +47,7 @@ $res->render($lookFeelPackage["layout"], $composite(
         ),
         "main" => array(
             "module" => "hoobr-articles",
-            "action" => "",
+            "action" => "main",
             "params" => array(
                 "category" => "general"
             )
