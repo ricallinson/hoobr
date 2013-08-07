@@ -12,11 +12,6 @@ $loaded = $require("hoobr/lib/middleware/bootstrap");
 $pathlib = $require("php-path");
 $composite = $require("php-composite");
 $assests = $require("hoobr-assets");
-
-/*
-    Grab the $request, $response objects.
-*/
-
 $req = $require("php-http/request");
 $res = $require("php-http/response");
 
