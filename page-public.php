@@ -28,6 +28,27 @@ $lookFeelPackage = $require($req->cfg("public/site-theme"));
 $assests["addBundle"]($lookFeelPackage["config"]);
 
 /*
+    Work out what to show the user.
+*/
+
+$mainModule = $req->param("module");
+$mainAction = $req->param("action");
+
+/*
+    This dosen't feel right.
+*/
+
+if (!$mainModule) {
+    $req->query["module"] = "hoobr-articles";
+    $mainModule = $req->param("module");
+}
+
+if (!$mainAction) {
+    $req->query["action"] = "main";
+    $mainAction = $req->param("action");
+}
+
+/*
     Renders the main page.
 */
 
@@ -43,8 +64,15 @@ $res->render($lookFeelPackage["layout"], $composite(
             )
         ),
         "main" => array(
-            "module" => "hoobr-articles",
-            "action" => "main",
+            "module" => $mainModule,
+            "action" => $mainAction,
+            "params" => array(
+                "category" => "general"
+            )
+        ),
+        "sidebar" => array(
+            "module" => $mainModule,
+            "action" => "sidebar",
             "params" => array(
                 "category" => "general"
             )
