@@ -16,13 +16,6 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
-    Find our look and feel.
-*/
-
-$lookFeelPackage = $require($req->cfg("public/site-theme"));
-$assests["addBundle"]($lookFeelPackage["config"]);
-
-/*
     Work out what to show the user.
 */
 
@@ -41,6 +34,24 @@ if (!$mainModule) {
 if (!$mainAction) {
     $req->query["action"] = "main";
     $mainAction = $req->param("action");
+}
+
+/*
+    Find our look and feel.
+*/
+
+$lookFeelPackage = $require($req->cfg("public/site-theme"));
+$assests["addBundle"]($lookFeelPackage["config"]);
+
+/*
+    Foreach module on the page read its config for assets.
+*/
+
+foreach (array($mainModule) as $moduleName) {
+    $module = $require($moduleName);
+    if (isset($module["config"])) {
+        $assests["addBundle"]($module["config"]);
+    }
 }
 
 /*

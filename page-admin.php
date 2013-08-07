@@ -67,6 +67,17 @@ if (!$mainAction) {
 }
 
 /*
+    Foreach module on the page read its config for assets.
+*/
+
+foreach (array($mainModule, "hoobr-users", "hoobr-packages") as $moduleName) {
+    $module = $require($moduleName);
+    if (isset($module["config"])) {
+        $assests["addBundle"]($module["config"]);
+    }
+}
+
+/*
     Organize the main and sidebar slots.
 */
 
