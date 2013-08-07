@@ -60,7 +60,7 @@ $res->render($lookFeelPackage["layout"], $composite(
             "action" => "article",
             "params" => array(
                 "view" => "splash",
-                "article-id" => "0787986e-fa45-11e2-b5a0-000000000000"
+                "article-id" => "04c2c240-ffb4-11e2-a694-ed28bcecb265"
             )
         ),
         "main" => array(
