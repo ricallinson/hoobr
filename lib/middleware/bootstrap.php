@@ -13,7 +13,7 @@ ini_set('display_errors', 'on');
 */
 
 $pathlib = $require("php-path");
-$configReader = $require("hoobr-config-reader");
+$configReader = $require("hoobr-config-reader/lib/parser");
 
 /*
     Prime request/response objects.
