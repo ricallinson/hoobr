@@ -66,7 +66,7 @@ $res->render($lookFeelPackage["layout"], $composite(
             "action" => "article",
             "params" => array(
                 "view" => "splash",
-                "article-id" => "04c2c240-ffb4-11e2-a694-ed28bcecb265"
+                "article-id" => "1375921077-15202e3b504e49"
             )
         ),
         "main" => array(
@@ -77,10 +77,21 @@ $res->render($lookFeelPackage["layout"], $composite(
             )
         ),
         "sidebar" => array(
-            "module" => $mainModule,
-            "action" => "sidebar",
-            "params" => array(
-                "category" => "general"
+            array(
+                "module" => $mainModule,
+                "action" => "sidebar",
+                "params" => array(
+                    "title" => "Articles",
+                    "category" => "general"
+                )
+            ),
+            array(
+                "module" => $mainModule,
+                "action" => "sidebar",
+                "params" => array(
+                    "title" => "Alice's Adventures in Wonderland",
+                    "category" => "alice"
+                )
             )
         ),
         "title" => $req->cfg("public/site-title"),
