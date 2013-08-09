@@ -23,6 +23,12 @@ $req = $require("php-http/request");
 $res = $require("php-http/response");
 
 /*
+    Bucket selection has to happen before we read any configuration.
+*/
+
+$require("hoobr-bucket-tester/lib/middleware/bucket");
+
+/*
     Set webroot, approot & datroot (these seem a bit sketchy).
 */
 
@@ -66,7 +72,6 @@ if ($req->cfg("site/offline") === "true" && $req->param("page") !== "admin") {
     These are modules which perform chaecks and setup the request.
 */
 
-$require("hoobr-bucket-tester/lib/middleware/bucket");
 $require("hoobr-users/lib/middleware/auth");
 
 /*
