@@ -55,7 +55,7 @@ $req->config = array_merge($req->config, $configReader("hoobr", $req->cfg("cfgro
     If hoobr is offline then show the page and exit.
 */
 
-if ($req->cfg("site/offline") && $req->param("page") !== "admin") {
+if ($req->cfg("site/offline") === "true" && $req->param("page") !== "admin") {
     $require($req->cfg("site/offline-module"));
     exit();
 }
